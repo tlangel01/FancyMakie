@@ -1,6 +1,22 @@
 module FancyMakie
 __precompile__()
 
+function help()
+    println("""
+    FancyMakie.jl — Fancy config for Makie
+    ------------------------------------------------------------------------------
+
+    Core measurement utilities:
+      • set_custom_theme!()    – Optional arguments are :plot and :heatmap
+      • mm2pt(x,y)             – Calculates pointsize from mm
+      • comma(String)          – Reformats periods to commas
+      • wbox(ax,limits)        – White box with limits as [←,→,↓,↑]
+      • cross()                – markerelement with optional args: length, width, rotation
+      
+    """)
+    return nothing
+end
+
 using CairoMakie, LaTeXStrings
 
 const fg_theme = Theme(size = (453.54,340.15), fontsize = 12)
@@ -56,7 +72,7 @@ function set_custom_theme!(theme::Symbol=:plot)
     elseif theme === :heatmap
         custom_theme = heatmap_theme
     else
-        error("$theme not defined; try :plot or :heatmap")
+        error(":$theme not defined; try :plot or :heatmap")
     end
     Makie.set_screen_config!(CairoMakie, (px_per_unit=8,pt_per_unit=1))
     @eval Makie begin # make line and Marker elements of uniform size
@@ -137,6 +153,6 @@ function cross(;length=1,width=1,rotation=0)
     ])
 end
 
-export set_custom_theme!, mm2pt, comma, wbox
+export set_custom_theme!, mm2pt, comma, wbox, cross
 
 end # module
