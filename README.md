@@ -2,10 +2,6 @@
 
 ## Setup
 
-Prerequisite: CairoMakie.jl & LaTeXStrings.jl
+-Prerequisite: CairoMakie.jl & LaTeXStrings.jl
 
-- Extract ZIP (preferably) in your .../.julia/packages/ folder or git clone.
-
-- Start Julia
-
-- `] dev path/to/FancyMakie`
+- `] add https://github.com/tlangel01/FancyMakie.jl.git`
