@@ -74,7 +74,6 @@ function set_custom_theme!(theme::Symbol=:plot)
     else
         error(":$theme not defined; try :plot or :heatmap")
     end
-    Makie.set_screen_config!(CairoMakie, (px_per_unit=8,pt_per_unit=1))
     @eval Makie begin # make line and Marker elements of uniform size
         set_theme!(merge($custom_theme, theme_latexfonts()))
         function legendelements(plot::Lines, legend)
@@ -126,7 +125,7 @@ function set_custom_theme!(theme::Symbol=:plot)
     end
 end
 
-mm2pt(x,y) = 2.83465 .* (x,y)
+mm2pt(x,y) = (x,y) ./ 25.4 .* 72 # mm -> inches -> pt
 comma(str)=replace(str,'.'=>',')
 wbox(ax,limits)=poly!(ax,Point2f[(limits[1],limits[3]),(limits[2],limits[3]),(limits[2],limits[4]),(limits[1],limits[4])],
 space=:relative,color=:white,strokewidth=0.6,strokecolor=:black,linestyle=:solid)
