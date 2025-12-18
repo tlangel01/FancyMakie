@@ -130,7 +130,14 @@ comma(str)=replace(str,'.'=>',')
 wbox(ax,limits)=poly!(ax,Point2f[(limits[1],limits[3]),(limits[2],limits[3]),(limits[2],limits[4]),(limits[1],limits[4])],
 space=:relative,color=:white,strokewidth=0.6,strokecolor=:black,linestyle=:solid)
 
+"""
+    cross()
 
+optional argument:
+- `length`: default=1
+- `width`: default=1
+- `rotation`: default=0
+"""
 function cross(;length=1,width=1,rotation=0)
     l=0.5length
     w=0.12width
